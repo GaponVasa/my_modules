@@ -4,11 +4,19 @@ function createSelectHTML(selectItemsArr, selected, defText) {
   function itemCreate(itemId, value, select_d) {
     return `<li class="select_item" data-id=${itemId} ${select_d}>${value}</li>`;
   }
-  let selectedValue;
+
+  let selectedValue = "no data";
+  selectItemsArr.some((el) => {
+    if (el.id === selected) {
+      selectedValue = el.value;
+    } else {
+      selectedValue = defText;
+    }
+    return el.id === selected;
+  });
   const stringItems = selectItemsArr
     .map((element) => {
       const selectFirst = selected === element.id ? '"selected"' : "";
-      selectedValue = selected === element.id ? element.value : defText;
       return itemCreate(element.id, element.value, selectFirst);
     })
     .join("");
@@ -29,6 +37,7 @@ class Select {
   constructor(element, option) {
     this.$el = element;
     this.option = option;
+    this.specifiedElement = document.getElementById("select");
     this.selectField;
     this.iconTag;
     this.dropDown;
@@ -37,6 +46,8 @@ class Select {
       this._handlerToggleDropdownEvent.bind(this);
     this._hendlerSelectingDropdownInputEvent =
       this._hendlerSelectingDropdownInputEvent.bind(this);
+    this._handlerClickOutsideSelectElement =
+      this._handlerClickOutsideSelectElement.bind(this);
     this.create();
   }
   _createSelect() {
@@ -56,6 +67,7 @@ class Select {
       "click",
       this._hendlerSelectingDropdownInputEvent
     );
+    document.addEventListener("click", this._handlerClickOutsideSelectElement);
   }
 
   _handlerToggleDropdownEvent() {
@@ -72,6 +84,15 @@ class Select {
     this.selectedValue.id = event.target.dataset.id;
     this.selectedValue.value = event.target.textContent;
     console.log(this.selectedValue);
+  }
+
+  _handlerClickOutsideSelectElement(event) {
+    const isClickInside = this.specifiedElement.contains(event.target);
+    if (!isClickInside) {
+      if (this.iconTagName === this.option.iconDown) {
+        this.close();
+      }
+    }
   }
 
   get selectFieldTextValue() {
