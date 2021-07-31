@@ -1,0 +1,92 @@
+/*-----------------------------MAIN-------------------------------*/
+body {
+  font-family: "Oxygen", sans-serif;
+}
+.container {
+  min-width: 100%;
+  width: 100%;
+  height: 100%;
+  padding: 7rem 0;
+}
+.wrapper {
+  width: 93.5%;
+  padding: 0 3rem;
+}
+.field_wrapper {
+}
+.button_container {
+  display: flex;
+  justify-content: end;
+}
+.field {
+  border: 1px solid #a5a5a5;
+  border-radius: 5px;
+  padding: 0.5rem;
+}
+.hide_btn {
+  visibility: hidden;
+}
+.right {
+  margin-bottom: 0.2rem;
+}
+.input_and_buttons_field {
+  margin-top: 2rem;
+  display: flex;
+}
+.numberWords {
+  width: 90%;
+  border: 1px solid #a5a5a5;
+  border-top-left-radius: 5px;
+  border-bottom-left-radius: 5px;
+  padding: 0.5rem;
+}
+.numberWords:focus {
+  outline: none;
+  border-color: rgb(255, 174, 0);
+}
+.placeholder_red {
+  border: 1px solid red;
+}
+.placeholder_red::placeholder {
+  color: red;
+  font-weight: bold;
+  opacity: 1;
+}
+.btn {
+  padding: 0.55rem 1.5rem;
+  cursor: pointer;
+}
+.green {
+  background-color: #1fb91f;
+  color: white;
+  border-left: none;
+  border-right: none;
+  border-top: 1px solid #a5a5a5;
+  border-bottom: 1px solid #a5a5a5;
+}
+.green:hover {
+  background-color: white;
+  color: #1fb91f;
+}
+.red {
+  background-color: #ff1414;
+  color: white;
+  border: 1px solid #a5a5a5;
+  border-bottom-right-radius: 5px;
+  border-top-right-radius: 5px;
+}
+.red:hover {
+  background-color: white;
+  color: #ff1414;
+}
+.blue {
+  background-color: rgb(28, 132, 218);
+  color: white;
+  border: 1px solid #a5a5a5;
+  border-radius: 5px;
+  margin-top: 0.1 rem;
+}
+.blue:hover {
+  background-color: white;
+  color: rgb(28, 132, 218);
+}
