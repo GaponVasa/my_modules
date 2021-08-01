@@ -1,14 +1,5 @@
 "use strict";
 
-/*
- * Модуль mathOperationAddAndSub приймає на вхід три параметри в вигляді string рядків
- * 	1.)перше число(десятковий дріб або ціле число з різним знаком);
- * 	2.)друге число(десятковий дріб або ціле число з різним знаком);
- * 	3.)знак дії(додавання або віднімання);
- * На виході число(десятковий дріб або ціле число з різним знаком) у вигляді string.
- * Ціль написання даного модуля: в JS є виправлення проблеми з десятковими дробами коли 0.3 - 0.1 = 0.09999999999999998.
- */
-
 let mathOperationAddAndSub = (function () {
   let point = (digit1, digit2, action) => {
     const digA = parseFloat(digit1);
@@ -260,30 +251,7 @@ let mathOperationAddAndSub = (function () {
   return {
     start: function (digit1, digit2, action) {
       console.log(digit1, action, digit2, " = ", point(digit1, digit2, action));
-      //return point(digit1, digit2, action);
+      return point(digit1, digit2, action);
     },
   };
 })();
-
-mathOperationAddAndSub.start(-2, 0, "+");
-console.log("--------------------------------------------------------");
-mathOperationAddAndSub.start(0.1, 0.2, "+");
-console.log("--------------------------------------------------------");
-mathOperationAddAndSub.start(0.1, 2, "-");
-console.log("--------------------------------------------------------");
-mathOperationAddAndSub.start(-2, 0, "-");
-console.log("--------------------------------------------------------");
-mathOperationAddAndSub.start(0, 0, "-");
-console.log("--------------------------------------------------------");
-mathOperationAddAndSub.start(0, 0, "+");
-console.log("--------------------------------------------------------");
-mathOperationAddAndSub.start(0.1, -0.4, "+");
-console.log("--------------------------------------------------------");
-mathOperationAddAndSub.start(2, 8, "+");
-console.log("--------------------------------------------------------");
-mathOperationAddAndSub.start(2, 10, "+");
-console.log("--------------------------------------------------------");
-mathOperationAddAndSub.start(2.0123456789, 10234567789.987654321, "+");
-console.log("--------------------------------------------------------");
-mathOperationAddAndSub.start(-2, -10, "-");
-console.log("--------------------------------------------------------");

@@ -7,48 +7,58 @@
     <title>Math Operation</title>
     <link rel="stylesheet" href="css/normalize.css" />
     <link rel="stylesheet" href="css/all.css" />
+    <link rel="stylesheet" href="css/select.css" />
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link
       href="https://fonts.googleapis.com/css2?family=Oxygen&display=swap"
       rel="stylesheet"
     />
+    <script
+      type="module"
+      src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.esm.js"
+    ></script>
+    <script
+      nomodule
+      src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.js"
+    ></script>
   </head>
   <body>
     <main class="container">
       <div class="wrapper">
-        <div class="input_and_buttons_field">
+        <div class="field_wrapper">
           <input
             type="text"
             name="numberWords"
             class="numberWords"
-            maxlength="6"
+            id="firstDigit"
+            maxlength="12"
             placeholder="Enter the first number."
           />
+        </div>
+        <div class="field_wrapper">
+          <div id="select" class="select"></div>
+        </div>
+        <div class="field_wrapper">
           <input
             type="text"
             name="numberWords"
             class="numberWords"
-            maxlength="6"
+            id="secondDigit"
+            maxlength="12"
             placeholder="Enter the second number."
           />
         </div>
-        <div class="field_wrapper"></div>
+        <div class="field_wrapper flex_end">
+          <button type="button" id="btn-equal" class="btn blue">Equal</button>
+        </div>
+        <div class="field_wrapper">
+          <div id="result_field" class="field">Result.</div>
+        </div>
       </div>
     </main>
-    <!-- <div class="button_container">
-      <button type="button" id="btn-copy" class="btn blue right">
-        Copy
-      </button>
-    </div>
-    <div class="field">Lorem text.</div> -->
-
-    <!-- 
-  <button type="button" id="btn-generate" class="btn green">
-    Generate
-  </button>
-  <button type="button" id="btn-reset" class="btn red">Reset</button> -->
     <script src="src/mathOperation.js"></script>
+    <script src="select.js"></script>
     <script src="index.js"></script>
   </body>
 </html>
