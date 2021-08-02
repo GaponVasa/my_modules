@@ -108,7 +108,6 @@ class Select {
 
   get selectedValueObj() {
     if (this.selectedValue.id === "" && this.selectedValue.value === "") {
-      //"Nothing is selected. Object is empty."
       return false;
     } else if (
       this.selectedValue.id !== "" ||

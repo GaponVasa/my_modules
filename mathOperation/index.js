@@ -17,68 +17,80 @@ const inputSecondDigit = document.getElementById("secondDigit");
 const buttonEqual = document.getElementById("btn-equal");
 const resultField = document.getElementById("result_field");
 
+function checkField(targetEl, nameObjProp, valObj, digit, reg, selRes) {
+  let keyExpression;
+  if (nameObjProp === "firstDigit") {
+    keyExpression = digit !== "" && reg.test(digit);
+  }
+  if (nameObjProp === "secondDigit") {
+    keyExpression = digit !== "" && reg.test(digit) && valObj.flag;
+  }
+  if (nameObjProp === "signOperation") {
+    keyExpression = selRes !== false && valObj.flag;
+  }
+  if (keyExpression) {
+    valObj.flag = true;
+    if (nameObjProp === "firstDigit" || nameObjProp === "secondDigit") {
+      valObj[nameObjProp] = digit;
+    } else {
+      valObj.signOperation = selRes.value;
+    }
+    removeRedLine(targetEl);
+  } else {
+    console.log(`notok ${nameObjProp}`);
+    addRedLine(targetEl);
+    valObj.flag = false;
+  }
+}
+
+function addRedLine(elementName) {
+  elementName.classList.add("placeholder_red");
+}
+
+function removeRedLine(elementName) {
+  elementName.classList.remove("placeholder_red");
+}
+
 buttonEqual.addEventListener("click", function () {
   const selectResult = select.selectedValueObj;
+  const firstDigit = inputFirstDigit.value;
+  const secondDigit = inputSecondDigit.value;
   const regular = /^[-|+]?\d+[.|,]?\d*$/;
   const validationObj = {
-    flagValidation: false,
+    flag: false,
     firstDigit: "no data",
     secondDigit: "no data",
     signOperation: "no data",
   };
-  // console.log("selectedValueObj = ", select.selectedValueObj.id);
-  // console.log(inputFirstDigit.value);
-  // console.log(inputSecondDigit.value);
-  // console.log(
-  //   "regular.test(inputFirstDigit.value) = ",
-  //   regular.test(inputFirstDigit.value)
-  // );
-  if (inputFirstDigit.value !== "" && regular.test(inputFirstDigit.value)) {
-    validationObj.flagValidation = true;
-    validationObj.firstDigit = inputFirstDigit.value;
-  } else {
-    console.log("notok inputFirstDigit");
-    validationObj.flagValidation = false;
-  }
-  // console.log(
-  //   'inputSecondDigit.value !== "" = ',
-  //   inputSecondDigit.value !== ""
-  // );
-  // console.log(
-  //   "regular.test(inputSecondDigit.value) = ",
-  //   regular.test(inputSecondDigit.value)
-  // );
-  // console.log("validationObj.flagValidation = ", validationObj.flagValidation);
-  if (
-    inputSecondDigit.value !== "" &&
-    regular.test(inputSecondDigit.value) &&
-    validationObj.flagValidation
-  ) {
-    validationObj.flagValidation = true;
-    validationObj.secondDigit = inputSecondDigit.value;
-  } else {
-    console.log("notok inputSecondDigit");
-    validationObj.flagValidation = false;
-  }
 
-  if (select.selectedValueObj !== false && validationObj.flagValidation) {
-    validationObj.flagValidation = true;
-    validationObj.signOperation = select.selectedValueObj.value;
-  } else {
-    console.log("notok select ");
-    validationObj.flagValidation = false;
-  }
+  checkField(inputFirstDigit, "firstDigit", validationObj, firstDigit, regular);
+  checkField(
+    inputSecondDigit,
+    "secondDigit",
+    validationObj,
+    secondDigit,
+    regular
+  );
+  checkField(
+    selectElement.querySelector(".select-field"),
+    "signOperation",
+    validationObj,
+    "",
+    "",
+    selectResult
+  );
 
-  if (validationObj.flagValidation) {
+  if (validationObj.flag) {
     inputFirstDigit.value = "";
     inputSecondDigit.value = "";
     select.clear();
-    // console.log(validationObj);
-    resultField.innerHTML = mathOperationAddAndSub.start(
+    resultField.innerHTML = `${validationObj.firstDigit} ${
+      validationObj.signOperation
+    } ${validationObj.secondDigit} = ${mathOperationAddAndSub.start(
       validationObj.firstDigit,
       validationObj.secondDigit,
       validationObj.signOperation
-    );
-    validationObj.flagValidation = false;
+    )}`;
+    validationObj.flag = false;
   }
 });

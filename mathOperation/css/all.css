@@ -32,10 +32,11 @@ body {
   outline: none;
   border-color: rgb(255, 174, 0);
 }
-.placeholder_red {
+.field_wrapper .placeholder_red {
   border: 1px solid red;
+  color: red;
 }
-.placeholder_red::placeholder {
+.field_wrapper .placeholder_red::placeholder {
   color: red;
   font-weight: bold;
   opacity: 1;
