@@ -83,7 +83,6 @@ class Select {
     this.selectFieldTextValue = event.target.textContent;
     this.selectedValue.id = event.target.dataset.id;
     this.selectedValue.value = event.target.textContent;
-    console.log(this.selectedValue);
   }
 
   _handlerClickOutsideSelectElement(event) {
@@ -107,9 +106,26 @@ class Select {
     return this.iconTag.name;
   }
 
+  get selectedValueObj() {
+    if (this.selectedValue.id === "" && this.selectedValue.value === "") {
+      return false;
+    } else if (
+      this.selectedValue.id !== "" ||
+      this.selectedValue.value !== ""
+    ) {
+      return this.selectedValue;
+    }
+  }
+
   create() {
     this._createSelect();
     this._addEvents();
+  }
+
+  clear() {
+    this.selectField.innerHTML = this.option.defaultText;
+    this.selectedValue.id = "";
+    this.selectedValue.value = "";
   }
 
   open() {
