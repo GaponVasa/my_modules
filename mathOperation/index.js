@@ -53,8 +53,8 @@ function removeRedLine(elementName) {
 
 buttonEqual.addEventListener("click", function () {
   const selectResult = select.selectedValueObj;
-  const firstDigit = inputFirstDigit.value;
-  const secondDigit = inputSecondDigit.value;
+  const firstDigit = inputFirstDigit.value.replace(/\s/g, "");
+  const secondDigit = inputSecondDigit.value.replace(/\s/g, "");
   const regular = /^[-|+]?\d+[.|,]?\d*$/;
   const validationObj = {
     flag: false,
